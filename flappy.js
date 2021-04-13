@@ -124,6 +124,7 @@ function colidiu(passaro, barreiras){
                 || estaoSobrepostos(passaro.elemento, inferior)
         }
     })
+
     return colidiu
 }
 
@@ -135,7 +136,7 @@ function FlappyBird(){
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
-    const barreiras = new Barreiras(altura, largura, 200, 400,
+    const barreiras = new Barreiras(altura, largura, 220, 400,
         () => progresso.atualizarPontos(++pontos))
     const passaro = new Passaro(altura)
 
@@ -150,14 +151,17 @@ function FlappyBird(){
             passaro.animar()
 
             if(colidiu(passaro,barreiras)){
-                clearInterval(temporizador)
+                clearInterval(temporizador)                
 
                 setTimeout(function() {
                     window.location.reload(1);
-                  }, 1000);
+                  }, 2500);
+                
+                // modal
+                document.getElementById("Modal").removeAttribute("style");
             }
         }, 20)
     }
-}
+} 
 
 new FlappyBird().start()
